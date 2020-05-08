@@ -13,8 +13,8 @@ public class Server {
         tomcat.setPort(8080);
         tomcat.getConnector();
         tomcat.addWebapp("/spark", new File("src/main/").getAbsolutePath());
-        Wrapper helloServlet = tomcat.addServlet("/spark", "Servlet", new Servlet());
-        helloServlet.addMapping("/hello");
+        Wrapper projectServlet = tomcat.addServlet("/spark", "ProjectServlet", new ProjectServlet());
+        projectServlet.addMapping("/project");
         tomcat.start();
 
         Runtime.getRuntime().addShutdownHook(new Thread() {

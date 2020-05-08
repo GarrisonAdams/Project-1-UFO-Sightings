@@ -17,7 +17,6 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 import scala.Tuple2;
 
-@WebServlet("/hello")
 public class Servlet extends HttpServlet {
 	JavaSparkContext sparkContext;
 	List<String> names;
