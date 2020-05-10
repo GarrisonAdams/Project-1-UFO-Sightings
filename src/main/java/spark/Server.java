@@ -7,6 +7,7 @@ import org.apache.catalina.Wrapper;
 import org.apache.catalina.startup.Tomcat;
 
 public class Server {
+    
     public static void main(String[] args) throws LifecycleException {
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(new File("target/tomcat/").getAbsolutePath());
