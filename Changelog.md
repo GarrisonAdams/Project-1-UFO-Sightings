@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.3.0
+- Official csv file is scrubbed.csv, which describes UFO sightings in North America
+- HTTP GET method now displays the locations of every UFO sighting in California
+- Created rddFiltering() method and rddSeoncdsBetween() method
+
 ## Version 0.2.0
 - Created ProjectServlet.java. It is the start of my project
 - Included covid-19.csv file
