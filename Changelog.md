@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.4.0
+- Program can now calculate the percentage increase/decrease in sightings between two years
+- Program can now return the number of cases from any state or country
+
+
 ## Version 0.3.0
 - Official csv file is scrubbed.csv, which describes UFO sightings in North America
 - HTTP GET method now displays the locations of every UFO sighting in California
