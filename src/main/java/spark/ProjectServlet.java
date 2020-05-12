@@ -7,22 +7,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.spark.SparkConf;
+//import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaSparkContext;
+
 
 import scala.Tuple2;
 
 public class ProjectServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-
     JavaSparkContext sparkContext;
 
+    private static final long serialVersionUID = 1L;
+
     public void init() throws ServletException {
-        SparkConf conf = new SparkConf().setAppName("Project1").setMaster("local[8]");
-        sparkContext = new JavaSparkContext(conf);
+
+    }
+
+    public ProjectServlet(JavaSparkContext context)
+    {
+        this.sparkContext = context;
     }
 
     public JavaRDD<String> rddFiltering(JavaRDD<String> rdd, String text, int column) {
