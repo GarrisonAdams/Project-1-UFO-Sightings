@@ -12,7 +12,7 @@ public class Server {
     
     public static void main(String[] args) throws LifecycleException {
 
-        SparkConf conf = new SparkConf().setAppName("Project1").setMaster("spark://174.85.57.58:7077");
+        SparkConf conf = new SparkConf().setAppName("Project1").setMaster("local[8]");
         JavaSparkContext sparkContext = new JavaSparkContext(conf);
 
         Tomcat tomcat = new Tomcat();
