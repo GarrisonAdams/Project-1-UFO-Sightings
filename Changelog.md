@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.5.0
+- Included ByCountryServlet, ByStateServlet, ByTimeServlet
+- created RDDCustomOperations, which includes RDD operations I have used over and over
+
 ## Version 0.4.0
 - Program can now calculate the percentage increase/decrease in sightings between two years
 - Program can now return the number of cases from any state or country
