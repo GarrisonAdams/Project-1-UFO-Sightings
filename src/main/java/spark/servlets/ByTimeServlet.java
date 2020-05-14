@@ -51,7 +51,7 @@ public class ByTimeServlet extends HttpServlet {
             resp.getWriter().println();
 
             int i = 1943;
-            while(i < 2015)
+            while(i < 2000)
             {
                 resp.getWriter().println("Percentage increase/decrease between year " + i +" and " + (i+10)); 
                 resp.getWriter().println(computePercentageChange(i,i+10));
