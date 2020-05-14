@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.6.0
+- Placed the servlets in spark/servlets
+- Created CustomListInteger.java and CustomListString.java inside spark/CustomLists.
+    - These were created to act as wrappers for the List<Tuple2<>> objects created by the RDD collect() operation. They make the output look better
+- More refactoring. Streamlining everything.
+
 ## Version 0.5.0
 - Included ByCountryServlet, ByStateServlet, ByTimeServlet
 - created RDDCustomOperations, which includes RDD operations I have used over and over

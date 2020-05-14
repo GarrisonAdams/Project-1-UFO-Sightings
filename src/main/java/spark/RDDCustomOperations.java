@@ -1,8 +1,6 @@
 package spark;
-
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
-
 import scala.Tuple2;
 
 public class RDDCustomOperations
@@ -32,8 +30,8 @@ public class RDDCustomOperations
         return rdd2.reduceByKey((x, y) -> (x + y));
     }
 
-    public static JavaPairRDD<Integer, Integer> rddCounterInteger(JavaRDD<String> rdd) {
-        JavaPairRDD<Integer, Integer> rdd2 = rdd.mapToPair(x -> new Tuple2<>(Integer.parseInt(x), 1));
+    public static JavaPairRDD<Integer, Integer> rddCounterInteger(JavaRDD<Integer> rdd3) {
+        JavaPairRDD<Integer, Integer> rdd2 = rdd3.mapToPair(x -> new Tuple2<>(x, 1));
         return rdd2.reduceByKey((x, y) -> (x + y));
     }
 }

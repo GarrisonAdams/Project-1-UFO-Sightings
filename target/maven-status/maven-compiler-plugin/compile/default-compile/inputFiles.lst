@@ -1,6 +1,8 @@
-C:\Users\Garrison\project-1-Garrison\src\main\java\spark\ByTimeServlet.java
+C:\Users\Garrison\project-1-Garrison\src\main\java\spark\CustomLists\CustomListInteger.java
 C:\Users\Garrison\project-1-Garrison\src\main\java\spark\RDDCustomOperations.java
-C:\Users\Garrison\project-1-Garrison\src\main\java\spark\ByStateServlet.java
+C:\Users\Garrison\project-1-Garrison\src\main\java\spark\servlets\ByStateServlet.java
+C:\Users\Garrison\project-1-Garrison\src\main\java\spark\CustomLists\CustomListString.java
 C:\Users\Garrison\project-1-Garrison\src\main\java\spark\Server.java
-C:\Users\Garrison\project-1-Garrison\src\main\java\spark\ProjectServlet.java
-C:\Users\Garrison\project-1-Garrison\src\main\java\spark\ByCountryServlet.java
+C:\Users\Garrison\project-1-Garrison\src\main\java\spark\servlets\ByTimeServlet.java
+C:\Users\Garrison\project-1-Garrison\src\main\java\spark\servlets\ProjectServlet.java
+C:\Users\Garrison\project-1-Garrison\src\main\java\spark\servlets\ByCountryServlet.java

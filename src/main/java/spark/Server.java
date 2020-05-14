@@ -5,6 +5,10 @@ import java.io.File;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+
+import spark.servlets.*;
+
+
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.startup.Tomcat;
@@ -28,7 +32,7 @@ public class Server {
         projectServlet.addMapping("/project");
         Wrapper byTimeServlet = tomcat.addServlet("/spark", "ByTimeServlet", new ByTimeServlet(sparkContext,rdd));
         byTimeServlet.addMapping("/time");
-        Wrapper byStateServlet = tomcat.addServlet("/spark", "ByStateServlet", new ByTimeServlet(sparkContext,rdd));
+        Wrapper byStateServlet = tomcat.addServlet("/spark", "ByStateServlet", new ByStateServlet(sparkContext,rdd));
         byStateServlet.addMapping("/state");
         Wrapper byCountryServlet = tomcat.addServlet("/spark", "ByCountryServlet", new ByCountryServlet(sparkContext,rdd));
         byCountryServlet.addMapping("/country");
