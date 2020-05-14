@@ -1,4 +1,4 @@
-package spark.CustomLists;
+package spark.customlists;
 
 import scala.Tuple2;
 import java.util.List;
@@ -24,7 +24,6 @@ public class CustomListInteger
             Tuple2<Integer, Integer> tuple = list.get(i);
             string.append(String.valueOf(tuple._1) + " " + tuple._2 + "\n");
             i++;
-
         }
         return string.toString();
     }

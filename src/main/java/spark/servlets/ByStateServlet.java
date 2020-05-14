@@ -1,7 +1,7 @@
 package spark.servlets;
 
-import spark.RDDCustomOperations;
-import spark.CustomLists.CustomListString;
+import spark.rddoperations.RDDCustomOperations;
+import spark.customlists.*;
 
 import java.io.IOException;
 

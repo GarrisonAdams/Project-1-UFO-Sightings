@@ -11,9 +11,9 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 
-import spark.RDDCustomOperations;
-import spark.CustomLists.CustomListInteger;
-import spark.CustomLists.CustomListString;
+import spark.rddoperations.RDDCustomOperations;
+import spark.customlists.*;
+
 
 public class ByTimeServlet extends HttpServlet {
 
