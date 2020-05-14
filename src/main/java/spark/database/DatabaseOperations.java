@@ -9,64 +9,73 @@ import java.sql.SQLException;
 
 public class DatabaseOperations {
     
-    Connection connection = null; 
-    PreparedStatement stmt = null;
+    static Connection connection = null; 
+    static PreparedStatement stmt = null;
 
-    public void insertIntoDatabase(List<Tuple2<String, Integer>> list, String table) throws SQLException {
+     public static void insertIntoDatabase(List<Tuple2<String, Integer>> list, String table) throws SQLException {
 
         connection = DatabaseConnector.getConnection();
 
         for (Tuple2<String, Integer> tuple : list) {
-            String sql = "INSERT INTO table VALUES(?,?)";
+            String sql = "INSERT INTO " + table + " " + "VALUES(?,?)";
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, tuple._1);
             stmt.setInt(2, tuple._2);
-            stmt.addBatch();
+            stmt.executeUpdate();
+            
         }
 
-        stmt.executeBatch();
         closeResources();
     }
 
-    public void insertIntoDatabase(List<Tuple2<Integer, Integer>> list, String table,boolean b) throws SQLException {
+    public static void insertIntoDatabase(List<Tuple2<Integer, Integer>> list, String table, boolean b)
+            throws SQLException {
 
         connection = DatabaseConnector.getConnection();
 
         for (Tuple2<Integer, Integer> tuple : list) {
-            String sql = "INSERT INTO table VALUES(?,?)";
+            String sql = "INSERT INTO " + table + " " + "VALUES(?,?)";
             stmt = connection.prepareStatement(sql);
             stmt.setInt(1, tuple._1);
             stmt.setInt(2, tuple._2);
-            stmt.addBatch();
+            stmt.executeUpdate();
         }
 
-        stmt.executeBatch();
         closeResources();
     }
 
-    public String readFromDatabase(String table, String tupleType) throws SQLException {
+    public static String printDatabase(String table, String tupleType) throws SQLException {
         connection = DatabaseConnector.getConnection();
         StringBuffer string = new StringBuffer();
-
-        String sql = "SELECT * FROM ?"; // Our SQL query
+        String sql = "SELECT * FROM " + table; // Our SQL query
         stmt = connection.prepareStatement(sql); // Creates the prepared statement from the query
-        stmt.setString(1, table);
         ResultSet rs = stmt.executeQuery(); // Queries the database
-        
-        while(rs.next())
-        {
-            if(tupleType.toLowerCase().equals("string"))
-                string.append(rs.getString(0) + " " + rs.getInt(1) + "\n");
-            else if(tupleType.toLowerCase().equals("integer"))
-                string.append(rs.getString(0) + " " + rs.getInt(1) + "\n");
+
+        string.append("Printing " + table + "\n");
+        while (rs.next()) {
+            if (tupleType.toLowerCase().equals("string"))
+                string.append(rs.getString(1) + " " + rs.getInt(2) + "\n");
+            else if (tupleType.toLowerCase().equals("integer"))
+                string.append(rs.getInt(1) + " " + rs.getInt(2) + "\n");
         }
         closeResources();
         return string.toString();
 
     }
 
-    
-	private void closeResources() {
+
+
+    public static int readFromDatabase(String table, String keyValue) throws SQLException {
+        connection = DatabaseConnector.getConnection();
+        String sql = "SELECT cases FROM " + table + " WHERE keyType=?";
+        stmt = connection.prepareStatement(sql);
+        stmt.setString(1, keyValue);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+
+    private static void closeResources() {
 
 		try {
 			if (stmt != null)

@@ -1,0 +1,12 @@
+spark\database\DatabaseConnector.class
+spark\rddoperations\RDDCustomOperations.class
+spark\rddoperations\SparkOperations.class
+spark\customlists\CustomListInteger.class
+spark\database\DatabaseOperations.class
+spark\servlets\ByStateServlet.class
+spark\servlets\ByCountryServlet.class
+spark\customlists\CustomListString.class
+spark\Server$1.class
+spark\servlets\ByTimeServlet.class
+spark\Server.class
+spark\servlets\ProjectServlet.class

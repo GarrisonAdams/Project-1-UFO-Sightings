@@ -1,4 +1,4 @@
-package spark.rddOperations;
+package spark.rddoperations;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import scala.Tuple2;
