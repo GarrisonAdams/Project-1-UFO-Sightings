@@ -78,21 +78,4 @@ public class ByTimeServlet extends HttpServlet {
         return ((double)cases2 - (double) cases1) /  (double)cases1 * 100;
     }
 
-    
-    // public double computePercentageChange(int time1, int time2, String table) {
-    //     int cases1=0;
-    //     int cases2=0;
-    //     try {
-    //         cases1 = DatabaseOperations.readFromDatabase(table, String.valueOf(time1));
-    //         cases2 = DatabaseOperations.readFromDatabase(table, String.valueOf(time2));
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-        
-    //     return (cases2 -  cases1) /  cases1 * 100;
-    // }
-    
-    
-
-    
 }

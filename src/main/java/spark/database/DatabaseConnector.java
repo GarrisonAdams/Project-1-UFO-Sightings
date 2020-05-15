@@ -14,7 +14,7 @@ public class DatabaseConnector
 	
 	private static final String CONNECTION_USERNAME = "user";
 	private static final String CONNECTION_PASSWORD = "password";
-	private static final String URL = "jdbc:postgresql://3.16.25.254/user";
+	private static final String URL = "jdbc:postgresql://52.14.219.87/user";
 	private static Connection connection;
 	
 	

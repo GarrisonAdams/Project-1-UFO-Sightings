@@ -34,4 +34,9 @@ public class RDDCustomOperations
         JavaPairRDD<Integer, Integer> rdd2 = rdd3.mapToPair(x -> new Tuple2<>(x, 1));
         return rdd2.reduceByKey((x, y) -> (x + y));
     }
+
+    public static JavaPairRDD<Double, Integer> rddCounterDouble(JavaRDD<Double> rdd3) {
+        JavaPairRDD<Double, Integer> rdd2 = rdd3.mapToPair(x -> new Tuple2<>(x, 1));
+        return rdd2.reduceByKey((x, y) -> (x + y));
+    }
 }

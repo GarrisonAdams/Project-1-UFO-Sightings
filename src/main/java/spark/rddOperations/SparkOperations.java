@@ -26,6 +26,7 @@ public class SparkOperations {
         DatabaseOperations.insertIntoDatabase(sightingsByCountry().sortByKey().collect(), "byCountryTable");
         DatabaseOperations.insertIntoDatabase(sightingsByState().sortByKey().collect(), "byStateTable");
         DatabaseOperations.insertIntoDatabase(sightingsByShape().sortByKey().collect(), "byShapeTable");
+
         DatabaseOperations.insertIntoDatabase(sightingsByDuration().sortByKey().collect(), "byDurationTable");
 
     }
@@ -121,8 +122,13 @@ public class SparkOperations {
 
     public JavaPairRDD<String, Integer> sightingsByDuration() {
         JavaRDD<String> rdd2 = RDDCustomOperations.rddStripToColumn(inputFile, 5);
-        JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
+        // JavaRDD<Double> rdd3 = rdd2.map(x ->
+        // {
+        //     return Double.parseDouble(x) / 25 *;
+        // });
 
+        JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
+        
         return rdd3;
     }
 

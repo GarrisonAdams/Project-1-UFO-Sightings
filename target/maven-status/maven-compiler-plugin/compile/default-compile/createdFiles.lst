@@ -3,6 +3,8 @@ spark\rddoperations\RDDCustomOperations.class
 spark\rddoperations\SparkOperations.class
 spark\database\DatabaseOperations.class
 spark\servlets\ByStateServlet.class
+spark\servlets\ByDurationServlet.class
+spark\servlets\ByShapeServlet.class
 spark\servlets\ByCountryServlet.class
 spark\customlists\CustomListString.class
 spark\Server$1.class
