@@ -69,7 +69,11 @@ public class DatabaseOperations {
         connection = DatabaseConnector.getConnection();
         String sql = "SELECT cases FROM " + table + " WHERE keyType=?";
         stmt = connection.prepareStatement(sql);
-        stmt.setString(1, keyValue);
+        if(table.equals("byMonthTable"))
+            stmt.setInt(1, Integer.parseInt(keyValue));
+        else
+            stmt.setString(1, keyValue);
+
         ResultSet rs = stmt.executeQuery();
         rs.next();
         return rs.getInt(1);

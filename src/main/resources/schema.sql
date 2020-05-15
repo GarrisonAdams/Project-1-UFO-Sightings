@@ -13,12 +13,18 @@ CREATE TABLE byYearTable (
     cases int
 );
 
-CREATE TABLE inCountryTable (
+
+CREATE TABLE byCountryTable (
     keyType varchar,
     cases int
 );
 
-CREATE TABLE byCountryTable (
+CREATE TABLE byShapeTable (
+    keyType varchar,
+    cases int
+);
+
+CREATE TABLE byDurationTable (
     keyType varchar,
     cases int
 );
@@ -28,16 +34,11 @@ CREATE TABLE byStateTable (
     cases int
 );
 
-CREATE TABLE inStateTable (
-    keyType varchar,
-    cases int
-);
+
 
 DELETE FROM byHourTable;
 DELETE FROM byMonthTable; 
 DELETE FROM byYearTable;
-DELETE FROM inCountryTable;
 DELETE FROM byCountryTable;
-DELETE FROM inStateTable;
 DELETE FROM byStateTable;
 

@@ -11,41 +11,29 @@ import spark.database.DatabaseOperations;
 
 public class SparkOperations {
     
+    JavaSparkContext sparkContext;
+    JavaRDD<String> inputFile;
 
-    SparkConf conf = new SparkConf().setAppName("Project1").setMaster("local[8]");
-    JavaSparkContext sparkContext = new JavaSparkContext(conf);
-    JavaRDD<String> inputFile = sparkContext.textFile("C:\\Users\\Garrison\\Project-1-Garrison\\src\\main\\resources\\scrubbed.csv", 4);
-   
- 
+    public SparkOperations(JavaSparkContext context, JavaRDD<String> input) {
+        this.sparkContext = context;
+        this.inputFile = input;
+    }
 
     public void runOperations() throws SQLException {
         DatabaseOperations.insertIntoDatabase(sightingsByHour().sortByKey().collect(), "byHourTable");
         DatabaseOperations.insertIntoDatabase(sightingsByYear().sortByKey().collect(), "byYearTable");
-        DatabaseOperations.insertIntoDatabase(sightingsByMonth().sortByKey().collect(), "byMonthTable",true);
+        DatabaseOperations.insertIntoDatabase(sightingsByMonth().sortByKey().collect(), "byMonthTable", true);
         DatabaseOperations.insertIntoDatabase(sightingsByCountry().sortByKey().collect(), "byCountryTable");
-        DatabaseOperations.insertIntoDatabase(sightingsInCountry("us").sortByKey().collect(), "InCountryTable");
         DatabaseOperations.insertIntoDatabase(sightingsByState().sortByKey().collect(), "byStateTable");
-        DatabaseOperations.insertIntoDatabase(sightingsInState("ca").sortByKey().collect(), "InStateTable");
+        DatabaseOperations.insertIntoDatabase(sightingsByShape().sortByKey().collect(), "byShapeTable");
+        DatabaseOperations.insertIntoDatabase(sightingsByDuration().sortByKey().collect(), "byDurationTable");
 
-        
-        
-        // System.out.println(DatabaseOperations.printDatabase("byHourTable", "String"));
-        // System.out.println(DatabaseOperations.printDatabase("byYearTable", "String"));
-        // System.out.println(DatabaseOperations.printDatabase("byMonthTable", "integer"));
-        // System.out.println(DatabaseOperations.printDatabase("byCountryTable", "String"));
-        // System.out.println(DatabaseOperations.printDatabase("inCountryTable", "String"));
-        // System.out.println(DatabaseOperations.printDatabase("byStateTable", "String"));
-        // System.out.println(DatabaseOperations.printDatabase("inStateTable", "String"));
-
-        sparkContext.close();
     }
 
-    public JavaPairRDD<String,Integer> sightingsInState(String state)
-    {
-        JavaRDD<String> rdd2 = RDDCustomOperations.rddFiltering(inputFile,state.toLowerCase(),2);
+    public JavaPairRDD<String, Integer> sightingsInState(String state) {
+        JavaRDD<String> rdd2 = RDDCustomOperations.rddFiltering(inputFile, state.toLowerCase(), 2);
 
-        JavaRDD<String> rdd3 = rdd2.map(x ->
-        {
+        JavaRDD<String> rdd3 = rdd2.map(x -> {
             String[] splitRow = x.split(",");
             return splitRow[1] + "," + splitRow[2];
         });
@@ -53,25 +41,22 @@ public class SparkOperations {
         return RDDCustomOperations.rddCounterString(rdd3);
     }
 
-    public int numberOfCasesInState(String state)
-    {
-        JavaRDD<String> rdd2 = RDDCustomOperations.rddFiltering(inputFile,state.toLowerCase(),2);
-        JavaRDD<String> rdd3 = RDDCustomOperations.rddStripToColumn(rdd2,2);
-        JavaPairRDD<String,Integer> rdd4 = RDDCustomOperations.rddCounterString(rdd3);
- 
+    public int numberOfCasesInState(String state) {
+        JavaRDD<String> rdd2 = RDDCustomOperations.rddFiltering(inputFile, state.toLowerCase(), 2);
+        JavaRDD<String> rdd3 = RDDCustomOperations.rddStripToColumn(rdd2, 2);
+        JavaPairRDD<String, Integer> rdd4 = RDDCustomOperations.rddCounterString(rdd3);
+
         return rdd4.lookup(state.toLowerCase()).get(0);
     }
 
-    public JavaPairRDD<String,Integer> sightingsByState()
-    {
-        JavaRDD<String> rdd2 =  RDDCustomOperations.rddStripToColumn(inputFile, 2);
-        JavaPairRDD<String,Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
- 
+    public JavaPairRDD<String, Integer> sightingsByState() {
+        JavaRDD<String> rdd2 = RDDCustomOperations.rddStripToColumn(inputFile, 2);
+        JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
+
         return rdd3;
     }
-        
-    public JavaPairRDD<String,Integer> sightingsByYear()
-    {
+
+    public JavaPairRDD<String, Integer> sightingsByYear() {
         JavaRDD<String> rdd2 = inputFile.map(x -> {
             try {
                 String[] splitRow = x.split(",");
@@ -87,11 +72,10 @@ public class SparkOperations {
 
         JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
         return rdd3;
-  
+
     }
-    
-    public JavaPairRDD<String,Integer> sightingsByHour()
-    {
+
+    public JavaPairRDD<String, Integer> sightingsByHour() {
         JavaRDD<String> rdd2 = inputFile.map(x -> {
             try {
                 String[] splitRow = x.split(",");
@@ -102,14 +86,14 @@ public class SparkOperations {
                 System.out.println("Exception inside rdd2 of listOfCasesByYear");
                 e.printStackTrace();
             }
-            return "";});
+            return "";
+        });
 
-            JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
-            return rdd3;
+        JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
+        return rdd3;
     }
 
-    public JavaPairRDD<Integer,Integer> sightingsByMonth()
-    {
+    public JavaPairRDD<Integer, Integer> sightingsByMonth() {
         JavaRDD<Integer> rdd2 = inputFile.map(x -> {
             try {
                 String[] splitRow = x.split(",");
@@ -128,18 +112,22 @@ public class SparkOperations {
         return rdd3;
     }
 
+    public JavaPairRDD<String, Integer> sightingsByCountry() {
+        JavaRDD<String> rdd2 = RDDCustomOperations.rddStripToColumn(inputFile, 3);
+        JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
 
-    public JavaPairRDD<String,Integer> sightingsByCountry()
-    {
-        JavaRDD<String> rdd2 =  RDDCustomOperations.rddStripToColumn(inputFile, 3);
-        JavaPairRDD<String,Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
- 
         return rdd3;
     }
 
-    public JavaPairRDD<String,Integer> sightingsInCountry(String country)
-    {
-        JavaRDD<String> rdd2 = RDDCustomOperations.rddFiltering(inputFile,country.toLowerCase(),3);
+    public JavaPairRDD<String, Integer> sightingsByDuration() {
+        JavaRDD<String> rdd2 = RDDCustomOperations.rddStripToColumn(inputFile, 5);
+        JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
+
+        return rdd3;
+    }
+
+    public JavaPairRDD<String, Integer> sightingsInCountry(String country) {
+        JavaRDD<String> rdd2 = RDDCustomOperations.rddFiltering(inputFile, country.toLowerCase(), 3);
 
         JavaRDD<String> rdd3 = rdd2.map(x ->
         {
@@ -150,6 +138,13 @@ public class SparkOperations {
         return RDDCustomOperations.rddCounterString(rdd3);
     }
 
+    public JavaPairRDD<String,Integer> sightingsByShape()
+    {
+        JavaRDD<String> rdd2 = RDDCustomOperations.rddStripToColumn(inputFile, 4);
+        JavaPairRDD<String, Integer> rdd3 = RDDCustomOperations.rddCounterString(rdd2);
+        return rdd3;
+    }
+
     public int numberOfCasesInCountry(String country)
     {
         JavaRDD<String> rdd2 = RDDCustomOperations.rddFiltering(inputFile,country.toLowerCase(),3);
@@ -158,6 +153,7 @@ public class SparkOperations {
 
         return rdd4.lookup(country.toLowerCase()).get(0);
     }
+
 
 
     
