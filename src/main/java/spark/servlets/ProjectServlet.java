@@ -1,5 +1,6 @@
 package spark.servlets;
-import spark.RDDCustomOperations;
+import spark.rddoperations.RDDCustomOperations;
+
 
 import java.io.IOException;
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 0.7.0
+- byDurationServlet and byShapeServlet added
+- created a postgres database on an ec2 instance on aws
+- spark.database is a new package containing DatabaseConnector.java and DatabaseOperations.java
+    DatabaseConnector.java creates the connection to the database
+    DatabaseOperations.java includes methods that let one write data to a table, read from a table, and print out a database
+- SparkOperations.java is responsible for using RDD operations on the database and writing the results (when applicable) to a database
+- got rid of CustomListInteger.java
+
 ## Version 0.6.0
 - Placed the servlets in spark/servlets
 - Created CustomListInteger.java and CustomListString.java inside spark/CustomLists.
