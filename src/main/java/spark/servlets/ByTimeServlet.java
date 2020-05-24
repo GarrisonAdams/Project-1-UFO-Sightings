@@ -31,7 +31,7 @@ public class ByTimeServlet extends HttpServlet {
         try {
             if (req.getParameter("inputType").equals("byHour")) {
                 resp.getWriter().println("List of sightings by hour: ");
-                resp.getWriter().println(DatabaseOperations.printDatabase("byHourTable", "String"));
+                resp.getWriter().println(DatabaseOperations.printDatabase("byHourTable","string"));
                 resp.getWriter().println();
                 resp.getWriter().println();
                 resp.getWriter().println();
@@ -39,7 +39,7 @@ public class ByTimeServlet extends HttpServlet {
                 resp.getWriter().println(computePercentageChange("08", "21", "byHourTable"));
             } else if (req.getParameter("inputType").equals("byMonth")) {
                 resp.getWriter().println("List of sightings by month: ");
-                resp.getWriter().println(DatabaseOperations.printDatabase("byMonthTable", "integer"));
+                resp.getWriter().println(DatabaseOperations.printDatabase("byMonthTable","integer"));
                 resp.getWriter().println();
                 resp.getWriter().println();
                 resp.getWriter().println();
@@ -48,7 +48,7 @@ public class ByTimeServlet extends HttpServlet {
                 resp.getWriter().println(computePercentageChange("2", "7", "byMonthTable"));
             } else if ((req.getParameter("inputType").equals("byYear"))) {
                 resp.getWriter().println("List of sightings by year: ");
-                resp.getWriter().println(DatabaseOperations.printDatabase("byYearTable", "String"));
+                resp.getWriter().println(DatabaseOperations.printDatabase("byYearTable","string"));
                 resp.getWriter().println();
 
                 int i = 1943;

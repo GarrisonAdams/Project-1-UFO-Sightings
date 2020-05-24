@@ -51,7 +51,7 @@ public class ByStateServlet extends HttpServlet {
         else if(req.getParameter("inputType").equals("byState"))
         {
             resp.getWriter().println("Sightings by state:");
-            resp.getWriter().println(DatabaseOperations.printDatabase("byStateTable", "String"));
+            resp.getWriter().println(DatabaseOperations.printDatabase("byStateTable","string"));
         }
         else
         {

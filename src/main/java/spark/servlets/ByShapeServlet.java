@@ -25,7 +25,7 @@ public class ByShapeServlet extends HttpServlet {
         resp.getWriter().println();
         resp.getWriter().println("Valid mappings: time,country,state,shape,duration");
         try {
-            resp.getWriter().println(DatabaseOperations.printDatabase("byShapeTable", "String"));
+            resp.getWriter().println(DatabaseOperations.printDatabase("byShapeTable","string"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

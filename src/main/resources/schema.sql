@@ -35,7 +35,8 @@ CREATE TABLE byStateTable (
 );
 
 
-
+DELETE FROM byShapeTable;
+DELETE FROM byDurationTable;
 DELETE FROM byHourTable;
 DELETE FROM byMonthTable; 
 DELETE FROM byYearTable;

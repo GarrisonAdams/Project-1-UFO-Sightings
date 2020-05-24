@@ -53,7 +53,7 @@ public class ByCountryServlet extends HttpServlet {
         } else if (req.getParameter("inputType").equals("byCountry")) {
             resp.getWriter().println("Sightings by country:");
             try {
-                resp.getWriter().println(DatabaseOperations.printDatabase("byCountryTable", "String"));
+                resp.getWriter().println(DatabaseOperations.printDatabase("byCountryTable","string"));
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -24,10 +24,11 @@ public class ByDurationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().println("This is the ByDurationServlet");
+        resp.getWriter().println("All times are in seconds");
         resp.getWriter().println();
         resp.getWriter().println("Valid mappings: time,country,state,shape,duration");
         try {
-            resp.getWriter().println(DatabaseOperations.printDatabase("byDurationTable", "String"));
+            resp.getWriter().println(DatabaseOperations.printDatabase("byDurationTable","string"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
