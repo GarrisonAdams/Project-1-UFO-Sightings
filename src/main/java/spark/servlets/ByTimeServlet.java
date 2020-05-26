@@ -8,7 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import spark.database.DatabaseOperations;
-
+/**
+ * This servlet is mapped to "/spark/time".
+ * ?inputType=byHour displays the sightings by the hour in which they took place
+ * ?inputType=byMonth displays the sightings by the month in which they took place
+ * ?inputType=byYear displays the sightings by the year in which they took place
+ */
 public class ByTimeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

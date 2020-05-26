@@ -1,5 +1,9 @@
 package spark.customlists;
 
+/** 
+ * This is a class that is used only for its toString method.
+ * When it is given a list, it will print it out in a particular way.
+ */
 import scala.Tuple2;
 import java.util.List;
 

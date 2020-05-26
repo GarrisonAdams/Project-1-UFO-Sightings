@@ -9,6 +9,10 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 import spark.database.DatabaseOperations;
 
+/**
+ * This class is responsible for all of the Spark RDD operations.
+ * It computes all of the data for the project and inserts them into the database
+ */
 public class SparkOperations {
     
     JavaSparkContext sparkContext;

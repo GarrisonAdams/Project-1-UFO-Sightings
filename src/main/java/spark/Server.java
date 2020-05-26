@@ -12,7 +12,19 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 import spark.rddoperations.SparkOperations;
 import spark.servlets.*;
-
+/**
+ * The main class of the project.
+ * It creates the JavaSparkContext object and feeds it to SparkOperations class.
+ * SparkOperations class performs RDD transformations/actions and inserts the results into database
+ * Then an embedded Tomcat server is created, along with five servlets.
+ * These five servlets are mapped to the following:
+ *      spark/country
+ *      spark/time
+ *      spark/state
+ *      spark/duration
+ *      spark/shape
+ * When one goes to the URL, information relating to the UFO sightings is displayed.
+ */
 public class Server {
 
     public static void main(String[] args) throws LifecycleException {
@@ -23,13 +35,11 @@ public class Server {
         
         SparkOperations SO = new SparkOperations(sparkContext,inputFile);
 
-        // try {
-        //     SO.runOperations();
-        // } catch (SQLException e1) {
-        //     e1.printStackTrace();
-        // }
-
-        System.out.println(SO.sightingsByDuration().sortByKey().collect());
+        try {
+            SO.runOperations();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
   
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(new File("target/tomcat/").getAbsolutePath());

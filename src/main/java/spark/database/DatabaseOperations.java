@@ -7,6 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class contains the methods that interact with the PostgreSQL database.
+ * It can insert, print, and read to/from the database
+ */
 public class DatabaseOperations {
     
     static Connection connection = null; 
@@ -28,21 +32,6 @@ public class DatabaseOperations {
         closeResources();
     }
 
-    // public static void insertIntoDatabase(List<Tuple2<Double, Integer>> list, String table, String b) throws SQLException {
-
-    //     connection = DatabaseConnector.getConnection();
-
-    //     for (Tuple2<Double, Integer> tuple : list) {
-    //         String sql = "INSERT INTO " + table + " " + "VALUES(?,?)";
-    //         stmt = connection.prepareStatement(sql);
-    //         stmt.setDouble(1, tuple._1);
-    //         stmt.setInt(2, tuple._2);
-    //         stmt.executeUpdate();
-            
-    //     }
-
-    //     closeResources();
-    // }
 
     public static void insertIntoDatabase(List<Tuple2<Integer, Integer>> list, String table, boolean b)
             throws SQLException {
