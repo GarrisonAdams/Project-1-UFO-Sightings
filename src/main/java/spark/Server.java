@@ -23,11 +23,13 @@ public class Server {
         
         SparkOperations SO = new SparkOperations(sparkContext,inputFile);
 
-        try {
-            SO.runOperations();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
+        // try {
+        //     SO.runOperations();
+        // } catch (SQLException e1) {
+        //     e1.printStackTrace();
+        // }
+
+        System.out.println(SO.sightingsByDuration().sortByKey().collect());
   
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(new File("target/tomcat/").getAbsolutePath());
