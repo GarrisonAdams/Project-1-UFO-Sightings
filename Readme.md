@@ -44,7 +44,26 @@
         - ?inputType=byYear
     - ex: localhost:8080/spark/time?inputType=byHour
 
+## Other Java Classes
 
+-Server.java
+    - This is the class that the jar runs. 
+    - It creates the SparkContext object, creates and runs the SparkOperations class, and creates the embedded Tomcat server
+    
+- CustomListString.java
+    - This java class accepts a List of tuples through its constructor and through its toString() method changes how the List is displayed
+
+- DatabaseConnector.java
+    - This class is responsible for forming a connection to the PostgreSQL database
+
+- DatabaseOperations.java
+    - This class is responsible for inserting, reading, and printing to/from the database
+
+- RDDCustomOperations.java
+    - This class contains RDD operations that I repeatedly used; I turned them into methods in order to increase code reusability
+
+- SparkOperations.java 
+    - This class is responsible for all of the Spark transformations, as well as inserting the results of those operations into the database.
 
 
 

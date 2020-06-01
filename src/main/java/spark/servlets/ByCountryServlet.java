@@ -3,7 +3,6 @@ package spark.servlets;
 import spark.customlists.CustomListString;
 import spark.database.DatabaseOperations;
 import spark.rddoperations.RDDCustomOperations;
-import spark.rddoperations.SparkOperations;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,7 +16,12 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 
-
+/**
+ * This servlet is mapped to "/spark/country".
+ * ?inputType=byCountry displays information about the number of UFO cases by country
+ * ?inputType=inCountry&country=(Country) displays information about the UFO cases in a country
+    For the inCountry inputType, the RDD operations are performed here and not mapped to database.
+ */
 public class ByCountryServlet extends HttpServlet {
 
     JavaSparkContext sparkContext;

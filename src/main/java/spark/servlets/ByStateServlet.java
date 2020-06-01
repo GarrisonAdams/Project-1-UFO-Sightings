@@ -3,7 +3,6 @@ package spark.servlets;
 import spark.customlists.CustomListString;
 import spark.database.DatabaseOperations;
 import spark.rddoperations.RDDCustomOperations;
-import spark.rddoperations.SparkOperations;
 
 import java.io.IOException;
 
@@ -15,6 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+
+/**
+ * This servlet is mapped to "/spark/state".
+ * ?inputType=byState displays information about the number of UFO cases by state
+ * ?inputType=inState&state=(State) displays information about the UFO cases in a state
+    For the inState inputType, the RDD operations are performed here and not mapped to database.
+ */
 
 public class ByStateServlet extends HttpServlet {
 

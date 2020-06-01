@@ -3,6 +3,10 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import scala.Tuple2;
 
+/**
+ * This class contains RDD operations that were performed over and over.
+ * These methods make RDD operations simpler.
+ */
 public class RDDCustomOperations
 {
     public static JavaRDD<String> rddFiltering(JavaRDD<String> rdd, String text, int column) {
